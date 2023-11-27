@@ -2,11 +2,13 @@ package org.selflearning;
 
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
+
 import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.android.options.app.ActivityOptions;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.DeviceRotation;
 import org.openqa.selenium.JavascriptExecutor;
@@ -24,7 +26,9 @@ import java.util.Set;
 
 public class AppiumWarmup extends CommonClass{
 
+
     @Test @Ignore
+
     public void kickstartTest() throws MalformedURLException, InterruptedException {
         WebElement el = driver.findElement(AppiumBy.accessibilityId("Preference"));
         System.out.println("The value is: "+el.getText());
@@ -42,6 +46,7 @@ public class AppiumWarmup extends CommonClass{
         driver.setClipboardText("Mohammad WiFi");
         driver.findElement(By.id("android:id/edit")).sendKeys(driver.getClipboardText());
         driver.findElement(AppiumBy.id("android:id/button1")).click();
+
         DeviceRotation portraitMode = new DeviceRotation(0,0,0);
         driver.rotate(portraitMode);
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
@@ -168,6 +173,7 @@ public class AppiumWarmup extends CommonClass{
         Thread.sleep(6000);
         String actual = driver.findElement(By.id("io.appium.android.apis:id/drag_result_text")).getText();
         Assert.assertEquals(actual,"Dropped!");
+
 
     }
     @Test

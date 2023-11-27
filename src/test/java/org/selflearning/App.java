@@ -1,18 +1,26 @@
 package org.selflearning;
 
 import io.appium.java_client.AppiumBy;
+<<<<<<< HEAD
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.Alert;
+=======
+>>>>>>> a661bcb9ba291fdb7c50c451b8b164b43e44b6a7
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+<<<<<<< HEAD
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.awt.event.MouseEvent;
+=======
+import org.testng.annotations.Test;
+
+>>>>>>> a661bcb9ba291fdb7c50c451b8b164b43e44b6a7
 import java.time.Duration;
 import java.util.HashSet;
 import java.util.List;
@@ -21,7 +29,11 @@ import java.util.Set;
 public class App extends CommonClass{
 
     @Test
+<<<<<<< HEAD
     public void appOptionTest() throws InterruptedException {
+=======
+    public void appOptionTest(){
+>>>>>>> a661bcb9ba291fdb7c50c451b8b164b43e44b6a7
 //        WebElement app = fluentWaitForElement(driver,By.xpath("//android.widget.TextView[@content-desc=\"App\"]"),
 //                Duration.ofSeconds(30), Duration.ofSeconds(5));
         WebElement app = driver.findElement(By.xpath("//android.widget.TextView[@content-desc=\"App\"]"));
@@ -29,6 +41,7 @@ public class App extends CommonClass{
         driver.findElement(AppiumBy.accessibilityId("Alert Dialogs")).click();
         List<WebElement> listOfAllerts = driver.findElements(By.className("android.widget.Button"));
         int size = listOfAllerts.size();
+<<<<<<< HEAD
         for(int i = 0; i<size; i++){
             System.out.println("Value of the list: "+listOfAllerts.get(i).getText());
         }
@@ -144,6 +157,11 @@ public class App extends CommonClass{
 
         }
 
+=======
+        //Set<String> elements = new HashSet<>();
+        for(int i = 0; i<size; i++)
+            System.out.println(listOfAllerts.get(i).getText());
+>>>>>>> a661bcb9ba291fdb7c50c451b8b164b43e44b6a7
 
     }
 }
