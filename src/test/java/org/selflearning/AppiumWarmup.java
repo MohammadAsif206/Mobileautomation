@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Set;
 
 public class AppiumWarmup extends CommonClass{
+    private AndroidDriver driver;
 
     @Test @Ignore
     public void kickstartTest() throws MalformedURLException, InterruptedException {

@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 public class App extends CommonClass{
+    private AndroidDriver driver;
 
     @Test
     public void appOptionTest() throws InterruptedException {

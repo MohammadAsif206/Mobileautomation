@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class SWYEcomApp extends CommonClass {
+public class SWYEcomApp extends BrowserFactory {
     @Test
     public void logIn() {
         driver.getCurrentPackage();

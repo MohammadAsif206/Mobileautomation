@@ -2,6 +2,7 @@ package org.selflearning;
 
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
+import io.appium.java_client.remote.SupportsContextSwitching;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,6 +16,7 @@ import java.util.Set;
 public class TestWebInMobile extends BrowserFactory {
     public Duration timeOut = Duration.ofSeconds(20);
     public Duration polling = Duration.ofSeconds(5);
+    private SupportsContextSwitching driver;
 
     @Test
     public void signInToSWY() throws InterruptedException {

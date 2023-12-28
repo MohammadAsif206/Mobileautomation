@@ -1,6 +1,9 @@
 package org.selflearning;
 
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.Activity;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.StartsActivity;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.By;
@@ -8,85 +11,117 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.selflearning.pageObject.android.SigInPage;
 import org.testng.Assert;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
-import java.awt.*;
-import java.security.Key;
 import java.time.Duration;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class EcomShopping extends CommonClass {
+    private AndroidDriver driver;
+
+
+    @Test @Ignore
+    public void fillTheForm() throws InterruptedException {
+        SigInPage sigInPage = new SigInPage(driver);
+        String gender = "Female";
+        sigInPage.launchTheAppMainPage();
+        sigInPage.setNameField("Khadija Asif");
+        sigInPage.selectGender(gender);
+        String country = "India";
+        sigInPage.findCountry(country);
+        sigInPage.submitForm();
+        sigInPage.navigateToProductPage();
+    }
+    @Test @Ignore
+    public void fillTheFormWithNameFeildEmpty() throws InterruptedException {
+        SigInPage sigInPage = new SigInPage(driver);
+        sigInPage.navigateBackInAndroidNative();
+        sigInPage.clearNameField();
+        sigInPage.setNameField("");
+        sigInPage.selectGender("Male");
+        String country = "Zimbabwe";
+        sigInPage.findCountry(country);
+        sigInPage.submitForm();
+        sigInPage.handleToastMessage();
+    }
+    @Test @Ignore
+    public void placeOrder(){
+        SigInPage sigInPage = new SigInPage(driver);
+        sigInPage.navigateBackInAndroidNative();
+        sigInPage.clearNameField();
+        sigInPage.setNameField("Mohammad Asif");
+        sigInPage.selectGender("Male");
+        String country = "Iraq";
+        sigInPage.findCountry(country);
+        sigInPage.submitForm();
+        sigInPage.navigateToProductPage();
+
+
+    }
+
+//
+//        WebElement countryList = driver.findElement(By.id("com.androidsample.generalstore:id/spinnerCountry"));
+//        countryList.click();
+//        WebElement specificCountry =
+//                driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Zimbabwe\"));"));
+//
+//
+//        scrollOperations(specificCountry, "Down");
+//        specificCountry.click();
+//        Assert.assertEquals("Zimbabwe", specificCountry.getText());
+//        WebElement shop = driver.findElement(By.id("com.androidsample.generalstore:id/btnLetsShop"));
+//        shop.click();
+//        Thread.sleep(5000);
+//        String shoppingListTitle = driver.findElement(By.id("com.androidsample.generalstore:id/toolbar_title")).getText();
+//        Assert.assertEquals("Products", shoppingListTitle);
+//        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+//
+//        // print the list of all countries
+//        countryList = driver.findElement(By.id("com.androidsample.generalstore:id/spinnerCountry"));
+//        countryList.click();
+//        List<WebElement> nameOfCountries;
+//        boolean isScrollable = false;
+//        boolean check;
+//        Set<String> countreis = new HashSet<>();
+//        System.out.println("LIST OF COUNTRIES: ");
+//        do {
+//
+//            Thread.sleep(5000);
+//            nameOfCountries = driver.findElements(By.className("android.widget.TextView"));
+//            int size = nameOfCountries.size();
+//            for (int i = 0; i < size; i++) {
+//                String country = nameOfCountries.get(i).getText();
+//                System.out.print(" " + country);
+//                countreis.add(country);
+//            }
+//            check = isScrollable(isScrollable);
+//            scrollOperations(driver.findElement(By.className("android.widget.TextView")), "down");
+//            Thread.sleep(7000);
+//        } while (check == true);
+//        nameOfCountries = driver.findElements(By.className("android.widget.TextView"));
+//        int size = nameOfCountries.size();
+//        for (int i = 0; i < size; i++) {
+//            String country = nameOfCountries.get(i).getText();
+//            System.out.print(" " + country);
+//            countreis.add(country);
+//        }
+//
+//        System.out.println("ALL LIST: ");
+//        for (String set : countreis) {
+//            System.out.print(" " + set);
+//        }
+//
+//
+//        System.out.println("App launched: ");
+//        Thread.sleep(20000);
+ //   }
 
     @Test
     @Ignore
-    public void fillTheForm() throws InterruptedException {
-        WebElement nameField = driver.findElement(By.id("com.androidsample.generalstore:id/nameField"));
-        nameField.sendKeys("Mohammad Asif");
-        WebElement gender = driver.findElement(By.id("com.androidsample.generalstore:id/radioFemale"));
-        Assert.assertEquals("Female", gender.getText());
-        gender.click();
-        // Assert.assertEquals(gender.getAttribute("Selected").equals("true"),"true");
-        WebElement countryList = driver.findElement(By.id("com.androidsample.generalstore:id/spinnerCountry"));
-        countryList.click();
-        WebElement specificCountry =
-                driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Zimbabwe\"));"));
-
-
-        scrollOperations(specificCountry, "Down");
-        specificCountry.click();
-        Assert.assertEquals("Zimbabwe", specificCountry.getText());
-        WebElement shop = driver.findElement(By.id("com.androidsample.generalstore:id/btnLetsShop"));
-        shop.click();
-        Thread.sleep(5000);
-        String shoppingListTitle = driver.findElement(By.id("com.androidsample.generalstore:id/toolbar_title")).getText();
-        Assert.assertEquals("Products", shoppingListTitle);
-        driver.pressKey(new KeyEvent(AndroidKey.BACK));
-
-        // print the list of all countries
-        countryList = driver.findElement(By.id("com.androidsample.generalstore:id/spinnerCountry"));
-        countryList.click();
-        List<WebElement> nameOfCountries;
-        boolean isScrollable = false;
-        boolean check;
-        Set<String> countreis = new HashSet<>();
-        System.out.println("LIST OF COUNTRIES: ");
-        do {
-
-            Thread.sleep(5000);
-            nameOfCountries = driver.findElements(By.className("android.widget.TextView"));
-            int size = nameOfCountries.size();
-            for (int i = 0; i < size; i++) {
-                String country = nameOfCountries.get(i).getText();
-                System.out.print(" " + country);
-                countreis.add(country);
-            }
-            check = isScrollable(isScrollable);
-            scrollOperations(driver.findElement(By.className("android.widget.TextView")), "down");
-            Thread.sleep(7000);
-        } while (check == true);
-        nameOfCountries = driver.findElements(By.className("android.widget.TextView"));
-        int size = nameOfCountries.size();
-        for (int i = 0; i < size; i++) {
-            String country = nameOfCountries.get(i).getText();
-            System.out.print(" " + country);
-            countreis.add(country);
-        }
-
-        System.out.println("ALL LIST: ");
-        for (String set : countreis) {
-            System.out.print(" " + set);
-        }
-
-
-        System.out.println("App launched: ");
-        Thread.sleep(20000);
-    }
-
-    @Test
     public void fillTheFormWithoutNameProvided() throws InterruptedException {
         WebElement nameField = driver.findElement(By.id("com.androidsample.generalstore:id/nameField"));
         WebElement shop = driver.findElement(By.id("com.androidsample.generalstore:id/btnLetsShop"));
@@ -188,7 +223,13 @@ public class EcomShopping extends CommonClass {
         String totalPrice = driver.findElement(By.id("com.androidsample.generalstore:id/totalAmountLbl")).getText();
         System.out.println(" Expected Value: " + totalAmounTitle + total + " Actual: " + totalAmounTitle + totalPrice);
         Assert.assertEquals((totalAmounTitle + "$ " + total), (totalAmounTitle + totalPrice));
+        Activity activity = new Activity("com.androidsample.generalstore", "com.androidsample.generalstore.MainActivity");
 
+       // Activity activity1 = new Activity(" "," ");
+      //  driver.startActivity(activity);
 
     }
+
+
+
 }

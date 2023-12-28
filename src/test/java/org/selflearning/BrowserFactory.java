@@ -45,7 +45,7 @@ public class BrowserFactory {
             options.setCapability("mode","--incognito");
 
             driver = new AndroidDriver(new URL(URL), options);
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(160));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (Exception e) {
